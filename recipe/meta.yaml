@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/Sanic-HTTPAuth-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/Sanic-HTTPAuth-{{ version }}.tar.gz
   sha256: a4f9fb15165a470d53ba1bd42acb8b0d9f579acb1c0af2c9752d1ed38e41cb89
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script:
     - rm -rf pyproject.toml
@@ -20,9 +20,9 @@ build:
 requirements:
   host:
     - pip
-    - python
+    - python {{ python_min }}
   run:
-    - python
+    - python >={{ python_min }}
     - sanic
 
 test:
@@ -33,6 +33,7 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: http://github.com/MihaiBalint/sanic-httpauth/
